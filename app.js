@@ -2,8 +2,15 @@ const express = require('express');
 const rotas = require('./src/routes');
 const app = express();
 
+// configurando express para aceitar o ejs
+app.set("view engine", "ejs");
+// para pegar coisas estaticas como imagens
+app.use(express.static("public"));
 
-app.use(express.static(__dirname + '/public'))
+app.set('views', 'src/views')
+
+
+app.use(express.static('/public'))
 app.use(rotas)
 app.use((req, res)=>{
     return res.send("Acho que você se perdeu!");
